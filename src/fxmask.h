@@ -30,6 +30,7 @@
 #include "settings.h"
 
 #include <QImage>
+#include <QObject>
 
 class FxMask : public QObject {
     Q_OBJECT

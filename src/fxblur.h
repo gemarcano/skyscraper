@@ -32,6 +32,7 @@
 
 #include <QImage>
 #include <QXmlStreamReader>
+#include <QObject>
 
 class FxBlur : public QObject {
     Q_OBJECT

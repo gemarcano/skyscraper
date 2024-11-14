@@ -48,8 +48,8 @@
 const auto SRC_USER = "user";
 
 // quickids.xml and db.xml
-const auto Q_ELEM = "quickid";
-const auto R_ELEM = "resource";
+const auto Q_ELEM = QLatin1String("quickid");
+const auto R_ELEM = QLatin1String("resource");
 const auto ATTR_FILEPATH = "filepath";
 const auto ATTR_ID = "id";
 const auto ATTR_SHA1_LEGACY = "sha1";

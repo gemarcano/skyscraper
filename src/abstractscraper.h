@@ -36,6 +36,7 @@
 #include <QImage>
 #include <QList>
 #include <QSettings>
+#include <QObject>
 
 class AbstractScraper : public QObject {
     Q_OBJECT

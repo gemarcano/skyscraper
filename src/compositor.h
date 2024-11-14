@@ -32,6 +32,7 @@
 
 #include <QImage>
 #include <QXmlStreamReader>
+#include <QObject>
 
 class Compositor : public QObject {
     Q_OBJECT

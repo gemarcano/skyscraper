@@ -31,6 +31,7 @@
 #include "settings.h"
 
 #include <QImage>
+#include <QObject>
 
 class FxGamebox : public QObject {
     Q_OBJECT
