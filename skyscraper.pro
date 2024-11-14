@@ -23,7 +23,7 @@ isEmpty(PREFIX) {
 }
 
 unix:target.path=$${PREFIX}/bin
-unix:target.files=Skyscraper Skyscraper.app/Contents/MacOS/Skyscraper
+unix:target.files=$${OUT_PWD}/Skyscraper $${OUT_PWD}Skyscraper.app/Contents/MacOS/Skyscraper
 
 unix:supplementary.path=$${PREFIX}/bin
 unix:supplementary.files=\
