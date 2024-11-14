@@ -34,6 +34,7 @@
 
 #include <QImage>
 #include <QThread>
+#include <QObject>
 
 class ScraperWorker : public QObject {
     Q_OBJECT

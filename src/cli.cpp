@@ -27,6 +27,7 @@
 #include <QCommandLineOption>
 #include <QMapIterator>
 #include <QStringBuilder>
+#include <QRegularExpression>
 
 void Cli::createParser(QCommandLineParser *parser, QString platforms) {
 
@@ -54,7 +55,7 @@ void Cli::createParser(QCommandLineParser *parser, QString platforms) {
 
     QString ht = "";
     int csr = 0;
-    for (auto w : h.split(QRegExp("\\s"))) {
+    for (auto w : h.split(QRegularExpression("\\s"))) {
         if (csr + w.length() >= 80 || w.isEmpty()) {
             csr = 0;
             ht.append('\n');

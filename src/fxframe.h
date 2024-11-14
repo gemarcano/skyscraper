@@ -30,6 +30,7 @@
 #include "settings.h"
 
 #include <QImage>
+#include <QObject>
 
 class FxFrame : public QObject {
     Q_OBJECT

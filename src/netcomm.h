@@ -30,6 +30,7 @@
 
 #include <QNetworkReply>
 #include <QTimer>
+#include <QObject>
 
 class NetComm : public QObject {
     Q_OBJECT

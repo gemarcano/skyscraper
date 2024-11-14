@@ -99,7 +99,7 @@ bool Cache::read() {
             if (xml.readNext() != QXmlStreamReader::StartElement) {
                 continue;
             }
-            if (xml.name() != "quickid") {
+            if (xml.name() != QLatin1String("quickid")) {
                 continue;
             }
             QXmlStreamAttributes attribs = xml.attributes();
@@ -143,7 +143,7 @@ bool Cache::read() {
             if (xml.readNext() != QXmlStreamReader::StartElement) {
                 continue;
             }
-            if (xml.name() != "resource") {
+            if (xml.name() != QLatin1String("resource")) {
                 continue;
             }
             QXmlStreamAttributes attribs = xml.attributes();

@@ -77,7 +77,7 @@ bool Compositor::processXml() {
 void Compositor::addChildLayers(Layer &layer, QXmlStreamReader &xml) {
     while (xml.readNext() && !xml.atEnd()) {
         Layer newLayer;
-        if (xml.isStartElement() && xml.name() == "output") {
+        if (xml.isStartElement() && xml.name() == QLatin1String("output")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("type")) {
                 newLayer.setType(T_OUTPUT);
@@ -99,7 +99,7 @@ void Compositor::addChildLayers(Layer &layer, QXmlStreamReader &xml) {
                 addChildLayers(newLayer, xml);
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "layer") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("layer")) {
             QXmlStreamAttributes attribs = xml.attributes();
             newLayer.setType(T_LAYER);
             if (attribs.hasAttribute("resource"))
@@ -124,7 +124,7 @@ void Compositor::addChildLayers(Layer &layer, QXmlStreamReader &xml) {
                 newLayer.setY(attribs.value("y").toInt());
             addChildLayers(newLayer, xml);
             layer.addLayer(newLayer);
-        } else if (xml.isStartElement() && xml.name() == "shadow") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("shadow")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("distance") &&
                 attribs.hasAttribute("softness") &&
@@ -135,14 +135,14 @@ void Compositor::addChildLayers(Layer &layer, QXmlStreamReader &xml) {
                 newLayer.setOpacity(attribs.value("opacity").toInt());
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "blur") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("blur")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("softness")) {
                 newLayer.setType(T_BLUR);
                 newLayer.setSoftness(attribs.value("softness").toInt());
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "mask") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("mask")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("file")) {
                 newLayer.setType(T_MASK);
@@ -157,7 +157,7 @@ void Compositor::addChildLayers(Layer &layer, QXmlStreamReader &xml) {
                     newLayer.setY(attribs.value("y").toInt());
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "frame") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("frame")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("file")) {
                 newLayer.setType(T_FRAME);
@@ -172,7 +172,7 @@ void Compositor::addChildLayers(Layer &layer, QXmlStreamReader &xml) {
                     newLayer.setY(attribs.value("y").toInt());
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "stroke") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("stroke")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("width")) {
                 newLayer.setType(T_STROKE);
@@ -187,35 +187,35 @@ void Compositor::addChildLayers(Layer &layer, QXmlStreamReader &xml) {
                     newLayer.setBlue(attribs.value("blue").toInt());
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "rounded") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("rounded")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("radius")) {
                 newLayer.setType(T_ROUNDED);
                 newLayer.setWidth(attribs.value("radius").toInt());
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "brightness") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("brightness")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("value")) {
                 newLayer.setType(T_BRIGHTNESS);
                 newLayer.setDelta(attribs.value("value").toInt());
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "opacity") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("opacity")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("value")) {
                 newLayer.setType(T_OPACITY);
                 newLayer.setOpacity(attribs.value("value").toInt());
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "contrast") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("contrast")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("value")) {
                 newLayer.setType(T_CONTRAST);
                 newLayer.setDelta(attribs.value("value").toInt());
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "balance") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("balance")) {
             QXmlStreamAttributes attribs = xml.attributes();
             newLayer.setType(T_BALANCE);
             if (attribs.hasAttribute("red"))
@@ -225,7 +225,7 @@ void Compositor::addChildLayers(Layer &layer, QXmlStreamReader &xml) {
             if (attribs.hasAttribute("blue"))
                 newLayer.setBlue(attribs.value("blue").toInt());
             layer.addLayer(newLayer);
-        } else if (xml.isStartElement() && xml.name() == "gamebox") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("gamebox")) {
             QXmlStreamAttributes attribs = xml.attributes();
             newLayer.setType(T_GAMEBOX);
             if (attribs.hasAttribute("side"))
@@ -235,21 +235,21 @@ void Compositor::addChildLayers(Layer &layer, QXmlStreamReader &xml) {
             if (attribs.hasAttribute("sidescaling"))
                 newLayer.setScaling(attribs.value("sidescaling").toString());
             layer.addLayer(newLayer);
-        } else if (xml.isStartElement() && xml.name() == "hue") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("hue")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("value")) {
                 newLayer.setType(T_HUE);
                 newLayer.setDelta(attribs.value("value").toInt());
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "saturation") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("saturation")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("value")) {
                 newLayer.setType(T_SATURATION);
                 newLayer.setDelta(attribs.value("value").toInt());
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "colorize") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("colorize")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("hue")) {
                 newLayer.setType(T_COLORIZE);
@@ -258,7 +258,7 @@ void Compositor::addChildLayers(Layer &layer, QXmlStreamReader &xml) {
                     newLayer.setDelta(attribs.value("saturation").toInt());
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "rotate") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("rotate")) {
             QXmlStreamAttributes attribs = xml.attributes();
             if (attribs.hasAttribute("degrees")) {
                 newLayer.setType(T_ROTATE);
@@ -267,7 +267,7 @@ void Compositor::addChildLayers(Layer &layer, QXmlStreamReader &xml) {
                     newLayer.setAxis(attribs.value("axis").toString());
                 layer.addLayer(newLayer);
             }
-        } else if (xml.isStartElement() && xml.name() == "scanlines") {
+        } else if (xml.isStartElement() && xml.name() == QLatin1String("scanlines")) {
             QXmlStreamAttributes attribs = xml.attributes();
             newLayer.setType(T_SCANLINES);
             if (attribs.hasAttribute("file")) {
@@ -285,9 +285,9 @@ void Compositor::addChildLayers(Layer &layer, QXmlStreamReader &xml) {
                 newLayer.setMode("overlay");
             }
             layer.addLayer(newLayer);
-        } else if (xml.isEndElement() && xml.name() == "layer") {
+        } else if (xml.isEndElement() && xml.name() == QLatin1String("layer")) {
             return;
-        } else if (xml.isEndElement() && xml.name() == "output") {
+        } else if (xml.isEndElement() && xml.name() == QLatin1String("output")) {
             return;
         }
     }
@@ -304,32 +304,32 @@ void Compositor::saveAll(GameEntry &game, QString completeBaseName) {
 
     for (auto &output : outputs.getLayers()) {
         QString filename = fn;
-        if (output.resType == "cover") {
+        if (output.resType == QLatin1String("cover")) {
             filename.prepend(config->coversFolder);
             if (config->skipExistingCovers && QFileInfo::exists(filename)) {
                 game.coverFile = filename;
                 continue;
             }
-        } else if (output.resType == "screenshot") {
+        } else if (output.resType == QLatin1String("screenshot")) {
             filename.prepend(config->screenshotsFolder);
             if (config->skipExistingScreenshots &&
                 QFileInfo::exists(filename)) {
                 game.screenshotFile = filename;
                 continue;
             }
-        } else if (output.resType == "wheel") {
+        } else if (output.resType == QLatin1String("wheel")) {
             filename.prepend(config->wheelsFolder);
             if (config->skipExistingWheels && QFileInfo::exists(filename)) {
                 game.wheelFile = filename;
                 continue;
             }
-        } else if (output.resType == "marquee") {
+        } else if (output.resType == QLatin1String("marquee")) {
             filename.prepend(config->marqueesFolder);
             if (config->skipExistingMarquees && QFileInfo::exists(filename)) {
                 game.marqueeFile = filename;
                 continue;
             }
-        } else if (output.resType == "texture") {
+        } else if (output.resType == QLatin1String("texture")) {
             filename.prepend(config->texturesFolder);
             if (config->skipExistingTextures && QFileInfo::exists(filename)) {
                 game.textureFile = filename;
@@ -337,15 +337,15 @@ void Compositor::saveAll(GameEntry &game, QString completeBaseName) {
             }
         }
 
-        if (output.resource == "cover") {
+        if (output.resource == QLatin1String("cover")) {
             output.setCanvas(QImage::fromData(game.coverData));
-        } else if (output.resource == "screenshot") {
+        } else if (output.resource == QLatin1String("screenshot")) {
             output.setCanvas(QImage::fromData(game.screenshotData));
-        } else if (output.resource == "wheel") {
+        } else if (output.resource == QLatin1String("wheel")) {
             output.setCanvas(QImage::fromData(game.wheelData));
-        } else if (output.resource == "marquee") {
+        } else if (output.resource == QLatin1String("marquee")) {
             output.setCanvas(QImage::fromData(game.marqueeData));
-        } else if (output.resource == "texture") {
+        } else if (output.resource == QLatin1String("texture")) {
             output.setCanvas(QImage::fromData(game.textureData));
         }
 
@@ -373,15 +373,15 @@ void Compositor::saveAll(GameEntry &game, QString completeBaseName) {
             }
         }
 
-        if (output.resType == "cover" && output.save(filename)) {
+        if (output.resType == QLatin1String("cover") && output.save(filename)) {
             game.coverFile = filename;
-        } else if (output.resType == "screenshot" && output.save(filename)) {
+        } else if (output.resType == QLatin1String("screenshot") && output.save(filename)) {
             game.screenshotFile = filename;
-        } else if (output.resType == "wheel" && output.save(filename)) {
+        } else if (output.resType == QLatin1String("wheel") && output.save(filename)) {
             game.wheelFile = filename;
-        } else if (output.resType == "marquee" && output.save(filename)) {
+        } else if (output.resType == QLatin1String("marquee") && output.save(filename)) {
             game.marqueeFile = filename;
-        } else if (output.resType == "texture" && output.save(filename)) {
+        } else if (output.resType == QLatin1String("texture") && output.save(filename)) {
             game.textureFile = filename;
         }
     }
@@ -393,19 +393,19 @@ void Compositor::processChildLayers(GameEntry &game, Layer &layer) {
         // left out in xml)
         Layer thisLayer = layer.getLayers().at(a);
         if (thisLayer.type == T_LAYER) {
-            if (thisLayer.resource == "") {
+            if (thisLayer.resource == QLatin1String("")) {
                 QImage emptyCanvas(1, 1, QImage::Format_ARGB32_Premultiplied);
                 emptyCanvas.fill(Qt::transparent);
                 thisLayer.setCanvas(emptyCanvas);
-            } else if (thisLayer.resource == "cover") {
+            } else if (thisLayer.resource == QLatin1String("cover")) {
                 thisLayer.setCanvas(QImage::fromData(game.coverData));
-            } else if (thisLayer.resource == "screenshot") {
+            } else if (thisLayer.resource == QLatin1String("screenshot")) {
                 thisLayer.setCanvas(QImage::fromData(game.screenshotData));
-            } else if (thisLayer.resource == "wheel") {
+            } else if (thisLayer.resource == QLatin1String("wheel")) {
                 thisLayer.setCanvas(QImage::fromData(game.wheelData));
-            } else if (thisLayer.resource == "marquee") {
+            } else if (thisLayer.resource == QLatin1String("marquee")) {
                 thisLayer.setCanvas(QImage::fromData(game.marqueeData));
-            } else if (thisLayer.resource == "texture") {
+            } else if (thisLayer.resource == QLatin1String("texture")) {
                 thisLayer.setCanvas(QImage::fromData(game.textureData));
             } else {
                 thisLayer.setCanvas(config->resources[thisLayer.resource]);
@@ -418,7 +418,7 @@ void Compositor::processChildLayers(GameEntry &game, Layer &layer) {
             }
 
             thisLayer.premultiply();
-            if (thisLayer.resource == "screenshot") {
+            if (thisLayer.resource == QLatin1String("screenshot")) {
                 // Crop away transparency and, if configured, black borders
                 // around screenshots
                 thisLayer.setCanvas(
@@ -449,17 +449,17 @@ void Compositor::processChildLayers(GameEntry &game, Layer &layer) {
                 painter.setOpacity(thisLayer.opacity * 0.01);
 
             int x = 0;
-            if (thisLayer.align == "center") {
+            if (thisLayer.align == QLatin1String("center")) {
                 x = (layer.width / 2) - (thisLayer.width / 2);
-            } else if (thisLayer.align == "right") {
+            } else if (thisLayer.align == QLatin1String("right")) {
                 x = layer.width - thisLayer.width;
             }
             x += thisLayer.x;
 
             int y = 0;
-            if (thisLayer.valign == "middle") {
+            if (thisLayer.valign == QLatin1String("middle")) {
                 y = (layer.height / 2) - (thisLayer.height / 2);
-            } else if (thisLayer.valign == "bottom") {
+            } else if (thisLayer.valign == QLatin1String("bottom")) {
                 y = layer.height - thisLayer.height;
             }
             y += thisLayer.y;
@@ -534,7 +534,7 @@ void Compositor::processChildLayers(GameEntry &game, Layer &layer) {
 QString Compositor::getSubpath(const QString &absPath) {
     QString subPath = ".";
     // only esde expects media files in same subpath as game file
-    if (config->frontend == "esde") {
+    if (config->frontend == QLatin1String("esde")) {
         QDir inputDir = QDir(config->inputFolder);
         QFileInfo entryInfo(absPath);
         QString entryDir = entryInfo.absolutePath();

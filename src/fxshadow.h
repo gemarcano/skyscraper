@@ -32,6 +32,7 @@
 
 #include <QImage>
 #include <QXmlStreamReader>
+#include <QObject>
 
 class FxShadow : public QObject {
     Q_OBJECT
