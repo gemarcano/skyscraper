@@ -22,6 +22,12 @@ isEmpty(PREFIX) {
   PREFIX = /usr/local
 }
 
+equals(PREFIX, /usr) {
+  ETC_PATH=/etc
+} else {
+  ETC_PATH=$${PREFIX}/etc
+}
+
 unix:target.path=$${PREFIX}/bin
 unix:target.files=$${OUT_PWD}/Skyscraper $${OUT_PWD}Skyscraper.app/Contents/MacOS/Skyscraper
 
@@ -31,25 +37,25 @@ unix:supplementary.files=\
   supplementary/scraperdata/convert_platforms_json.py \
   supplementary/scraperdata/peas_and_idmap_verify.py
 
-unix:config.path=$${PREFIX}/etc/skyscraper
+unix:config.path=$${ETC_PATH}/skyscraper
 unix:config.files=aliasMap.csv hints.xml mameMap.csv \
   mobygames_platforms.json peas.json platforms_idmap.csv \
   screenscraper_platforms.json tgdb_developers.json \
   tgdb_genres.json tgdb_platforms.json tgdb_publishers.json
 
-unix:examples.path=$${PREFIX}/etc/skyscraper
+unix:examples.path=$${ETC_PATH}/skyscraper
 unix:examples.files=config.ini.example README.md artwork.xml \
   artwork.xml.example1 artwork.xml.example2 artwork.xml.example3 \
   artwork.xml.example4 docs/ARTWORK.md docs/CACHE.md
 
-unix:cacheexamples.path=$${PREFIX}/etc/skyscraper/cache
+unix:cacheexamples.path=$${ETC_PATH}/skyscraper/cache
 unix:cacheexamples.files=cache/priorities.xml.example docs/CACHE.md
 
-unix:impexamples.path=$${PREFIX}/etc/skyscraper/import
+unix:impexamples.path=$${ETC_PATH}/skyscraper/import
 unix:impexamples.files=docs/IMPORT.md import/definitions.dat.example1 \
   import/definitions.dat.example2
 
-unix:resexamples.path=$${PREFIX}/etc/skyscraper/resources
+unix:resexamples.path=$${ETC_PATH}/skyscraper/resources
 unix:resexamples.files=resources/maskexample.png resources/frameexample.png \
   resources/boxfront.png resources/boxside.png resources/scanlines1.png \
   resources/scanlines2.png
