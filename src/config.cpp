@@ -155,7 +155,8 @@ void Config::setupUserConfig() {
     QDir::setCurrent(getSkyFolder());
 
     // copy configs
-    QString localEtcPath = QString(PREFIX "/etc/skyscraper/");
+    QString localEtcPath = QString(
+        (PREFIX != "/usr") ? PREFIX "/etc/skyscraper/" : "/etc/skyscraper/");
 
     if (!QFileInfo::exists(localEtcPath)) {
         // RetroPie or Windows installation type: handled externally
